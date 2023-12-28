@@ -22,6 +22,8 @@ public class LoginController extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.logout();
+        request.getSession().invalidate();
         request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request,response);
     }
 
@@ -29,14 +31,15 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = Utils.encryptPassword(request.getParameter("password"));
 
-        System.out.println(password);
         UserDetails userDetails = userBean.getUser(username,password);
         if(userDetails!=null){
-            request.setAttribute("unMesaj","Hello bosulica ai usernameul = " + userDetails.getUserName());
             request.getSession().setAttribute("userId",userDetails.getUserId());
         }
-        else
-            request.setAttribute("unMesaj","Parola este:"+password);
+        else{
+            request.setAttribute("infoMsg","Incorrect Username/Password");
+            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request,response);
+        }
+
         response.sendRedirect(request.getContextPath()+"/Home");
     }
     @Override
