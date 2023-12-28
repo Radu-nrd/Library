@@ -11,6 +11,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             background-color: #f4f4f4;
         }
@@ -20,7 +21,6 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 300px;
-            width: 100%;
         }
         input[type="text"],
         input[type="password"],
@@ -52,6 +52,22 @@
         .signup-button:hover {
             background-color: #2980b9;
         }
+        .doInfoMsg{
+            color: #dc3545;
+        }
+        .createAccTab{
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+        }
+        .createAccText{
+            display: inline-block;
+            text-align: center;
+        }
+
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -66,9 +82,13 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
         <div class="invalid-feedback">Password is required</div>
-        <input type="submit" value="Login"><br><br>
+        <input type="submit" value="Login">
+        <div class="doInfoMsg">${infoMsg}</div>
     </form>
-    <p style="text-align: center">Don't have an account? <a class="signup-button" href="CreateAccount">Sign Up</a></p>
+</div>
+<hr>
+<div class="createAccTab">
+    <div class="createAccText">Don't have an account? <a class="signup-button" href="CreateAccount">Sign Up</a></div>
 </div>
 <script src="${pageContext.request.contextPath}/form-validation.js"></script>
 </body>
