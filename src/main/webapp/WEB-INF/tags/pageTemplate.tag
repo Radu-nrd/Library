@@ -12,9 +12,10 @@
     </head>
     <body>
     <jsp:include page="/WEB-INF/pages/menu.jsp"/>
-    <main class="container-fluid margin-top-5rem">
+    <main class="container-fluid">
         <jsp:doBody/>
     </main>
     <script src="${pageContext.request.contextPath}/menuScript.js"></script>
+    <script src="${pageContext.request.contextPath}/profileScript.js"></script>
     </body>
 </html>
