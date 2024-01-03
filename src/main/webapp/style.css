@@ -114,3 +114,12 @@ input[type="submit"]:hover {
 .margin-top-5rem{
     margin-top: 5rem !important;
 }
+.hidden {
+    display: none;
+}
+.forTemplate{
+    display: flex;
+    min-height: 90vh;
+    align-items: center;
+    justify-content: center;
+}
