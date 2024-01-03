@@ -30,3 +30,106 @@
 .rightmarginmenu{
     margin-right: 10px;
 }
+
+.search-form {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #8B3103;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #5f1d16;
+}
+
+.menumarginleft{
+    margin-left: 100px;
+}
+
+.serchbarmarginleft{
+    margin-left: 350px;
+}
+
+.large-text {
+    font-size: 2em; /* You can adjust this value to make the text larger */
+    font-weight: bold; /* Optional: You can add other styling as needed */
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 25px;
+}
+
+.table-row:not(:first-child):not(:nth-child(2)) {
+    /* Apply margin or padding to all rows except the first and second rows /
+    / For example: /
+    margin-top: 10px; / Adjust this value as needed for separation */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #8B3103;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.book-image {
+    max-width: 100px;
+    max-height: 150px;
+    border-radius: 5px;
+}
+
+.homebody{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.borrow-button {
+    background-color: #8B3103;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.borrow-button:hover {
+    background-color: #5f1d16;
+}
+tr.clickable-row:hover {
+    background-color: #d3e0ea;
+    cursor: pointer;
+}
+
+.marginrightprofile{
+    margin-right: 50px;
+}
