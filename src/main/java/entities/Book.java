@@ -16,18 +16,6 @@ public class Book implements IBook {
     private String description;
     private String publisher;
     private int price;
-
-    public Book(){}
-
-    public Book(Long id, String author, String title, String description, String publisher, int price) {
-        this.bookID = id;
-        this.author = author;
-        this.title = title;
-        this.description = description;
-        this.publisher = publisher;
-        this.price = price;
-    }
-
     public void setBookID(Long id) {
         this.bookID = id;
     }
