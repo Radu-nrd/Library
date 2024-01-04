@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.Collection;
 
 @Entity
-public class Book implements IBook {
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,39 +14,44 @@ public class Book implements IBook {
     private String author;
     private String title;
     private String description;
-    private String publisher;
-    private int price;
+    private String genre;
+    private BookPhoto photo;
+
+    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public BookPhoto getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(BookPhoto photo) {
+        this.photo = photo;
+    }
+
     public void setBookID(Long id) {
         this.bookID = id;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public Long getBookID() {
         return bookID;
     }
 
-    @Override
     public String getAuthor() {
         return this.author;
     }
 
-    @Override
     public String getTitle() {
         return this.title;
     }
 
-    @Override
     public String getDescription() {
         return this.description;
-    }
-
-    @Override
-    public String getPublisher() {
-        return this.publisher;
-    }
-
-    @Override
-    public int getPrice() {
-        return this.price;
     }
 
     public void setAuthor(String author) {
@@ -59,14 +64,6 @@ public class Book implements IBook {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     @OneToMany(mappedBy = "book")

@@ -7,6 +7,7 @@
       <jta-data-source>jdbc/libraryResource</jta-data-source>
       <class>entities.User</class>
       <class>entities.Book</class>
+      <class>entities.UserGroup</class>
 
       <properties>
           <property name="jakarta.persistence.schema-generation.database.action" value="create-or-extend-tables" />

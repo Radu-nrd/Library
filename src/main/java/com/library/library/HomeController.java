@@ -4,6 +4,7 @@ import java.io.*;
 
 import Utility.Utils;
 import datatypes.UserDetails;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
