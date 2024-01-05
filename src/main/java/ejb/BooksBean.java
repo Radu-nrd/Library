@@ -16,6 +16,9 @@ import java.util.List;
 public class BooksBean {
     @PersistenceContext
     EntityManager entityManager;
+    public void SetEntityManager(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
     public List<BookDto> findAllBooks(){
         try {
             TypedQuery<Book> typedQuerry = entityManager.createQuery("SELECT b FROM Book b",Book.class);

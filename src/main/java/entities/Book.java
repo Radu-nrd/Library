@@ -17,6 +17,19 @@ public class Book {
     private String genre;
     private BookPhoto photo;
 
+    public Book(){
+
+    }
+
+
+    public Book(Long bookID, String author, String title, String description, String genre) {
+        this.bookID = bookID;
+        this.author = author;
+        this.title = title;
+        this.description = description;
+        this.genre = genre;
+    }
+
     @OneToOne(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public BookPhoto getPhoto() {
         return photo;
