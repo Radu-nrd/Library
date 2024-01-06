@@ -63,8 +63,6 @@ public class BookTests {
         verify(book1).setDescription("nununu");
         verify(book1).setGenre("ceva");
 
-       //sau verifici asa fara mock
-
        //Assertions.assertEquals(1L,book1.getBookID());
    }
 
