@@ -4,10 +4,11 @@
 
 <t:pageTemplate pageTitle="Home">
     <div class="homebody">
-        <c:if test="${pageContext.request.isUserInRole('READ_USERS')}">
+        <c:if test="${pageContext.request.isUserInRole('smecher')}">
             <a class="search-button" href="${pageContext.request.contextPath}/Users">Users</a>
+            <div>Te cheama ${nume}</div>
         </c:if>
-        <a class="search-button" href="${pageContext.request.contextPath}/Users">Users</a> <%-- test for buttons --%>
+
         <table>
             <thead>
             <tr>
