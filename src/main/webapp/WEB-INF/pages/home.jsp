@@ -20,7 +20,7 @@
             </thead>
             <tbody>
             <c:forEach var="book" items="${books}">
-                <tr class="clickable-row table-row" onclick="redirectToPage('${pageContext.request.contextPath}/BookDetails?id=1)')">
+                <tr class="clickable-row table-row" onclick="redirectToPage('${pageContext.request.contextPath}/BookDetails?id=${book.bookId}')">
                     <td><img src="" alt="Book 1" class="book-image"></td>
                     <td>${book.title}</td>
                     <td>${book.author}</td>
