@@ -17,5 +17,6 @@
     </main>
     <script src="${pageContext.request.contextPath}/menuScript.js"></script>
     <script src="${pageContext.request.contextPath}/profileScript.js"></script>
+    <script src="${pageContext.request.contextPath}/form-validation.js"></script>
     </body>
 </html>
