@@ -42,10 +42,9 @@ public class BooksBean {
 
     }
 
-    public void createBook(Long id,String author,String title,String description,String genre){
+    public void createBook(String author,String title,String description,String genre){
 
         Book book = new Book();
-        book.setBookID(id);
         book.setAuthor(author);
         book.setTitle(title);
         book.setDescription(description);
@@ -89,6 +88,14 @@ public class BooksBean {
         book.setPhoto(bookPhoto);
         entityManager.persist(bookPhoto);
 
+    }
+
+    public Long getBookId(String author,String title,String description,String genre){
+        Book book = (Book) entityManager
+                .createQuery("SELECT i FROM Book i WHERE i.title = :title and i.author = :author and i.description = :description and i.genre = :genre")
+                .setParameter("title",title).setParameter("author",author).setParameter("description", description).setParameter("genre", genre)
+                .getSingleResult();
+        return book.getBookID();
     }
     public BookPhotoDto findPhotoByBookId(Integer bookId) {
         List<BookPhoto> photos = entityManager

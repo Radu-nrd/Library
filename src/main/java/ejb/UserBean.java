@@ -5,6 +5,7 @@ import datatypes.UserDetails;
 import entities.User;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -21,6 +22,8 @@ public class UserBean {
 
     @PersistenceContext
     EntityManager entityManager;
+    @Inject
+    PasswordBean passwordBean;
 
     private Logger logger = Logger.getLogger(UserBean.class.getName());
 
@@ -44,7 +47,7 @@ public class UserBean {
     public void createUser(String username,String password,String firstName,String lastName,String address,String email){
         User user = new User();
         user.setUserName(username);
-        user.setPassword(Utils.encryptPassword(password));
+        user.setPassword(passwordBean.convertToSha256(password));
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setAddress(address);
