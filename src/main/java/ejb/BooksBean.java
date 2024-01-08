@@ -86,6 +86,7 @@ public class BooksBean {
         if(book.getPhoto()!= null)
             entityManager.remove(book.getPhoto());
         book.setPhoto(bookPhoto);
+        bookPhoto.setBook(book);
         entityManager.persist(bookPhoto);
 
     }
