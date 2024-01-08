@@ -21,12 +21,10 @@ public class UserBook {
 
     public UserBook(){}
 
-    public UserBook(Long id, User user, Book book, Date borrowedDate, Date returnDate) {
-        this.id = id;
+    public UserBook(User user, Book book, Date borrowedDate) {
         this.user = user;
         this.book = book;
         this.borrowedDate = borrowedDate;
-        this.returnDate = returnDate;
     }
 
     public Long getId() {

@@ -13,6 +13,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+@DeclareRoles({"READ_USERS","WRITE_USERS","READ_BOOKS","WRITE_BOOKS"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"READ_BOOKS"}))
 @WebServlet(name = "home", value = "/Home")
 public class HomeController extends HttpServlet {
 
