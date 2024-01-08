@@ -13,11 +13,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-
-@DeclareRoles({"smecher","nesmecher"})
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"smecher"}),
-        httpMethodConstraints = {@HttpMethodConstraint(value = "POST", rolesAllowed =
-                {"nesmecher"})})
 @WebServlet(name = "home", value = "/Home")
 public class HomeController extends HttpServlet {
 
@@ -32,7 +27,7 @@ public class HomeController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<BookDto> books = booksBean.findAllBooks();
 
-        request.setAttribute("nume",request.getUserPrincipal().getName());
+        //request.setAttribute("nume",request.getUserPrincipal().getName());
         request.setAttribute("books",books);
         request.getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(request,response);
     }
