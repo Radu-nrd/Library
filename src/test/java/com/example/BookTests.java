@@ -77,16 +77,13 @@ public class BookTests {
 
    @Test
    public void testCreateBook(){
-       Long bookId = 1L;
-       //Book book1 = new Book(bookId,"Ion Creanga","Harap alb","dadada","Basm");
-       //Book book1 = Mockito.mock(Book.class);
-       booksBean.createBook(bookId,"Ion Creanga","Harap alb","dadada","Basm");
+
+       booksBean.createBook("Ion Creanga","Harap alb","dadada","Basm");
        ArgumentCaptor<Book> bookCaptor = ArgumentCaptor.forClass(Book.class);
        verify(emMock).persist(bookCaptor.capture());
 
        Book book1 = bookCaptor.getValue();
 
-       Assertions.assertEquals(1L,book1.getBookID());
        Assertions.assertEquals("Ion Creanga",book1.getAuthor());
        Assertions.assertEquals("dadada",book1.getDescription());
        Assertions.assertEquals("Harap alb",book1.getTitle());
