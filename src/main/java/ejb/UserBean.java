@@ -87,6 +87,11 @@ public class UserBean {
         return list;
 
     }
+    public void deleteUser(Long userId){
+        User user = entityManager.find(User.class,userId);
+        entityManager.remove(user);
+    }
+
     public UserDto getUserById(Long id){
         try {
             TypedQuery<User> typedQuerry = entityManager.createQuery("SELECT u FROM User u WHERE u.userID=:id", User.class).setParameter("id",id);
