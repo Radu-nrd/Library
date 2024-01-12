@@ -21,13 +21,13 @@
                 <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
                     <div class="col">
                         <form method="post" action="editUser">
-                            <input type="hidden" name="userId" value="${user.getUserId()}">
+                            <input type="hidden" name="userId" value="${user.userId}">
                             <button type="submit" class="search-button">Edit Role</button>
                         </form>
                     </div>
                     <div class="col">
                         <form method="post" action="deleteUserServlet" onsubmit="return confirm('Are you sure you want to delete this user?');">
-                            <input type="hidden" name="userId" value="${user.getUserId()}">
+                            <input type="hidden" name="userId" value="${user.userId}">
                             <button type="submit" class="search-button">Delete</button>
                         </form>
                     </div>

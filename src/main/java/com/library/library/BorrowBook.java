@@ -1,11 +1,6 @@
 package com.library.library;
 
-import ejb.BooksBean;
 import ejb.BorrowBean;
-import entities.Book;
-import entities.User;
-import entities.UserBook;
-import entities.UserGroup;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -14,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.Date;
 
 @MultipartConfig
 @WebServlet(name = "BorrowBook", value = "/BorrowBook")
@@ -31,7 +25,7 @@ public class BorrowBook {
 
         Long id = Long.valueOf(request.getParameter("id"));
 
-        borrowBean.createUserBook(borrowBean.findUserByUsername(request.getParameter("username")),
+        borrowBean.borrowBook(borrowBean.findUserByUsername(request.getParameter("username")),
                 borrowBean.findBookById(id),
                 borrowBean.getBorrowedDate());
 

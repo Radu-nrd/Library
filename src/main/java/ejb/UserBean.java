@@ -3,6 +3,7 @@ package ejb;
 import Utility.Utils;
 import datatypes.UserDetails;
 import entities.User;
+import entities.UserGroup;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
@@ -54,6 +55,12 @@ public class UserBean {
         user.setEmail(email);
 
         entityManager.persist(user);
+
+        UserGroup userGroup = new UserGroup();
+        userGroup.setUsername(username);
+        userGroup.setRole("READ_BOOKS");
+
+        entityManager.persist(userGroup);
 
     }
 }

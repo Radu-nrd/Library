@@ -7,25 +7,26 @@ import java.util.Date;
 @Entity
 public class UserBook {
     @Id
+    @GeneratedValue
     private Long id;
     @ManyToOne
     private User user;
-
     @ManyToOne
     private Book book;
     @Temporal(TemporalType.DATE)
     private Date borrowedDate;
 
-    @Temporal(TemporalType.DATE)
-    private Date returnDate;
+    private String status;
 
     public UserBook(){}
 
-    public UserBook(User user, Book book, Date borrowedDate) {
+    public UserBook(User user, Book book, Date borrowedDate,String status) {
         this.user = user;
         this.book = book;
         this.borrowedDate = borrowedDate;
+        this.status = status;
     }
+
 
     public Long getId() {
         return id;
@@ -59,11 +60,11 @@ public class UserBook {
         this.borrowedDate = borrowedDate;
     }
 
-    public Date getReturnDate() {
-        return returnDate;
+    public String getStatus() {
+        return status;
     }
 
-    public void setReturnDate(Date returnDate) {
-        this.returnDate = returnDate;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

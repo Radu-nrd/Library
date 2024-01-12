@@ -1,13 +1,11 @@
 package ejb;
 
-import datatypes.BookDto;
 import entities.Book;
 import entities.User;
 import entities.UserBook;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
 
 import java.util.Date;
 
@@ -20,12 +18,14 @@ public class BorrowBean {
         this.entityManager = entityManager;
     }
 
-    public void createUserBook(User user, Book book, Date date){
+    public void borrowBook(User user, Book book, Date date){
         UserBook userBook = new UserBook();
         userBook.setUser(user);
         userBook.setBook(book);
         userBook.setBorrowedDate(date);
-
+        userBook.setStatus("borrowed");
+        user.addUserBook(userBook);
+        book.addUserBook(userBook);
         entityManager.persist(userBook);
     }
 

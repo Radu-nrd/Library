@@ -9,10 +9,10 @@
             <div class="collapse navbar-collapse serchbarmarginleft" id="navbarColor02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <div class="search-form">
+                        <form class="search-form" action="AddBook" method="post">
                             <input type="text" class="search-bar" id="searchInput" placeholder="Enter your search term">
-                            <button type="button" class="search-button">Search</button>
-                        </div>
+                            <button type="submit" class="search-button">Search</button>
+                        </form>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">

@@ -2,33 +2,46 @@ package com.library.library;
 
 import java.io.*;
 
+import ejb.BorrowBean;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+@DeclareRoles({"READ_USERS","WRITE_USERS","READ_BOOKS","WRITE_BOOKS"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"READ_BOOKS"}))
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
+
+    @Inject
+    BorrowBean borrowBean;
 
     public void init() {
         message = "Hello World!";
     }
 
 
+@Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Long idUserName = borrowBean.findUserByUsername(request.getUserPrincipal().getName()).getUserID();
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        //response.setContentType("text/html");
-        //request.setAttribute("unMesaj","DaDADA");
-        //response.sendRedirect("home.jsp");
-        // Hello
-        //PrintWriter out = response.getWriter();
-        //out.println("<html><body>");
-        //out.println("<h1>" + message + "</h1>");
-        //out.println("</body></html>");
+        request.setAttribute("idCarte",id);
+        request.setAttribute("idUserName",idUserName);
+        request.getRequestDispatcher("ceva.jsp").forward(request,response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        Long idCarte = Long.parseLong(request.getParameter("id_carte"));
+        borrowBean.borrowBook(borrowBean.findUserByUsername(request.getUserPrincipal().getName()),
+                borrowBean.findBookById(idCarte),
+                borrowBean.getBorrowedDate());
+
+        request.getRequestDispatcher("index.jsp").forward(request,response);
 
     }
 

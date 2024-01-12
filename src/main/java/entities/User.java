@@ -76,4 +76,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Collection<UserBook> userBooks;
 
+    public void addUserBook(UserBook userBook){
+        userBooks.add(userBook);
+    }
+
 }
