@@ -3,9 +3,7 @@ package com.library.library;
 import java.io.*;
 import java.util.List;
 
-import Utility.Utils;
 import datatypes.BookDto;
-import datatypes.UserDetails;
 import ejb.BooksBean;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;

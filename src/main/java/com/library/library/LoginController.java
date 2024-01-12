@@ -2,10 +2,6 @@ package com.library.library;
 
 import java.io.*;
 
-import Utility.Utils;
-import datatypes.UserDetails;
-import ejb.UserBean;
-import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
