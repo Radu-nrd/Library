@@ -4,9 +4,12 @@
 
 <t:pageTemplate pageTitle="Home">
     <div class="homebody">
-        <c:if test="${pageContext.request.isUserInRole('smecher')}">
+        <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
             <a class="search-button" href="${pageContext.request.contextPath}/Users">Users</a>
-            <div>Te cheama ${nume}</div>
+        </c:if>
+
+        <c:if test="${pageContext.request.isUserInRole('WRITE_BOOKS')}">
+            <a class="search-button" href="${pageContext.request.contextPath}/AddBook">Add Book</a>
         </c:if>
 
         <table>
@@ -20,7 +23,7 @@
             </thead>
             <tbody>
             <c:forEach var="book" items="${books}">
-                <tr class="clickable-row table-row" onclick="redirectToPage('${pageContext.request.contextPath}/hello-servlet?id=${book.bookId}')">
+                <tr class="clickable-row table-row" onclick="redirectToPage('${pageContext.request.contextPath}/BookData?id=${book.bookId}')">
                     <td><img src="${pageContext.request.contextPath}/BookPhotos?id=${book.bookId}" alt="Book 1" class="book-image"></td>
                     <td>${book.title}</td>
                     <td>${book.author}</td>

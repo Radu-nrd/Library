@@ -67,6 +67,10 @@ public class UserBean {
                 .getSingleResult();
         return user;
     }
+    public UserDto findUserDataByUsername(String username){
+        User user = findUserByUsername(username);
+        return new UserDto(user.getUserID(),user.getUserName(),user.getFirstName(),user.getLastName(),user.getEmail(),user.getAddress());
+    }
     public List<UserDto> findAllUsers(){
         try {
             TypedQuery<User> typedQuerry = entityManager.createQuery("SELECT u FROM User u", User.class);

@@ -26,6 +26,7 @@ public class EditBook extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         Long bookId= Long.parseLong(request.getParameter("book_id"));
         String author = request.getParameter("author");
         String title = request.getParameter("title");

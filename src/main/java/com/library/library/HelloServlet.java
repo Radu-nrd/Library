@@ -36,13 +36,6 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Long idCarte = Long.parseLong(request.getParameter("id_carte"));
-        borrowBean.borrowBook(borrowBean.findUserByUsername(request.getUserPrincipal().getName()),
-                borrowBean.findBookById(idCarte),
-                borrowBean.getBorrowedDate());
-
-        request.getRequestDispatcher("index.jsp").forward(request,response);
-
     }
 
     public void destroy() {

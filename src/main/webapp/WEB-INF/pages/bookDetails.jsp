@@ -23,15 +23,26 @@
                 <p><strong>Description:</strong>${book.description}</p>
                 <p><strong>Genre:</strong>${book.genre}</p>
                <div class="btn-group">
-                   <form>
-                       <button type="button" class="btn btn-outline-primary">Borrow</button>
+                   <form method="post" action="${pageContext.request.contextPath}/BorrowBook">
+                       <input type="hidden" value="${book.bookId}" name="book_id">
+                       <button type="submit" class="btn btn-outline-primary">Borrow</button>
                    </form>
+                   <br>
                    <form method="post" action="DeleteBook">
-                       <input type="hidden" value="${book.bookId}" name="book_id" id="book_id">
+                       <input type="hidden" value="${book.bookId}" name="book_id">
                        <button type="submit" class="btn btn-outline-primary">Delete</button>
                    </form>
+                   <br>
+                   <div>
+                       <button type="submit" class="btn btn-outline-primary" onclick="redirectToPage('${pageContext.request.contextPath}/EditBook?id=${book.bookId}')">Edit Book</button>
+                   </div>
                </div>
             </div>
         </div>
     </div>
 </t:pageTemplate>
+<script>
+    function redirectToPage(page){
+        window.location.href = page;
+    }
+</script>

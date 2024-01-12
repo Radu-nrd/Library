@@ -13,19 +13,10 @@ public class UserBook {
     private User user;
     @ManyToOne
     private Book book;
-    @Temporal(TemporalType.DATE)
-    private Date borrowedDate;
 
+    private String borrowedDate;
+    private String returnDate;
     private String status;
-
-    public UserBook(){}
-
-    public UserBook(User user, Book book, Date borrowedDate,String status) {
-        this.user = user;
-        this.book = book;
-        this.borrowedDate = borrowedDate;
-        this.status = status;
-    }
 
 
     public Long getId() {
@@ -52,19 +43,27 @@ public class UserBook {
         this.book = book;
     }
 
-    public Date getBorrowedDate() {
-        return borrowedDate;
-    }
-
-    public void setBorrowedDate(Date borrowedDate) {
-        this.borrowedDate = borrowedDate;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getBorrowedDate() {
+        return borrowedDate;
+    }
+
+    public void setBorrowedDate(String borrowedDate) {
+        this.borrowedDate = borrowedDate;
+    }
+
+    public String getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(String returnDate) {
+        this.returnDate = returnDate;
     }
 }

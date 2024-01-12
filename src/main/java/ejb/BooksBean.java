@@ -39,7 +39,6 @@ public class BooksBean {
             list.add(temp);
         }
         return list;
-
     }
 
     public void createBook(String author,String title,String description,String genre){

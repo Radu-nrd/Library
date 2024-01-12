@@ -49,7 +49,7 @@ public class AddBook extends HttpServlet {
 
         booksBean.addPhotoToBook(bookId,fileName,fileType,fileContent);
 
-        request.getRequestDispatcher("/WEB-INF/pages/addBook.jsp").forward(request,response);
+        response.sendRedirect(request.getContextPath()+"/Home");
     }
 
 }

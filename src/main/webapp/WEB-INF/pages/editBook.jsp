@@ -5,7 +5,8 @@
 <t:pageTemplate pageTitle="Edit Book">
     <div class="container">
         <h1>Edit book</h1>
-        <form action="${pageContext.request.contextPath}/EditBook" method="post" enctype="multipart/form-data">
+        <form action="EditBook" method="post">
+            <input type="hidden" name="book_id" value="${book.bookId}" id="book_id"/>
             <div class="form-group">
                 <label for="author">Author:</label>
                 <input type="text" class="form-control" id="author" name="author" value="${book.author}">
@@ -30,7 +31,6 @@
                 <div class="invalid-feedback">Genre is required</div>
             </div>
 
-            <input type="hidden" value="${book.bookId}" name="book_id" id="book_id">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
