@@ -28,7 +28,7 @@
                    </form>
                    <form method="post" action="DeleteBook">
                        <input type="hidden" value="${book.bookId}" name="book_id" id="book_id">
-                       <button type="button" class="btn btn-outline-primary">Delete</button>
+                       <button type="submit" class="btn btn-outline-primary">Delete</button>
                    </form>
                </div>
             </div>

@@ -31,7 +31,7 @@
                                     <a class="dropdown-item" href="${pageContext.request.contextPath}/Profile">Profile</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Log Out</a>
+                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/Logout">Log Out</a>
                                 </li>
                             </ul>
                         </li>

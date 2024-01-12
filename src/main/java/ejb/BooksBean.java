@@ -69,11 +69,10 @@ public class BooksBean {
         return new BookDto(book.getBookID(),book.getAuthor(), book.getTitle(),book.getDescription(),book.getGenre());
     }
 
-    public void deleteBooksByIds(Collection<Long> bookIds){
-        for(Long bookId:bookIds){
-            Book book = entityManager.find(Book.class,bookId);
-            entityManager.remove(book);
-        }
+    public void deleteBookById(Long bookId){
+        Book book = entityManager.find(Book.class,bookId);
+        entityManager.remove(book);
+
     }
 
     public void addPhotoToBook(Long bookId,String filename,String fileType,byte[] fileContent){
