@@ -14,7 +14,15 @@
             <p><strong>Address:</strong> ${user.address}</p>
             <p><strong>Groups:</strong> ${groups}</p>
             <br>
-            <a class="btn btn-primary btn-lg btn-block" href="changeRoles.jsp">Change roles</a>
+            <div class="btn-group">
+                <form>
+                    <a class="btn btn-primary btn-sm btn-block" href="changeRoles.jsp">Change roles</a>
+                </form>
+                <form action="DeleteUser" method="POST">
+                    <input type="hidden" value="${user.userId}" name="user_id">
+                    <button class="btn btn-primary btn-sm btn-block" type="submit">Delete</button>
+                </form>
+            </div>
         </div>
     </div>
 
