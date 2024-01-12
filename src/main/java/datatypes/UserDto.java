@@ -1,6 +1,6 @@
 package datatypes;
 
-public class UserDetails {
+public class UserDto {
     private Long userId;
     private String userName;
     private String firstName;
@@ -8,7 +8,8 @@ public class UserDetails {
     private String address;
     private String email;
 
-    public UserDetails(Long userId,String userName, String firstName, String lastName,String email ,String address) {
+
+    public UserDto(Long userId, String userName, String firstName, String lastName, String email , String address) {
         this.userId = userId;
         this.userName = userName;
         this.firstName = firstName;

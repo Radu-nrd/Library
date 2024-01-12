@@ -1,7 +1,6 @@
 package ejb;
 
-import Utility.Utils;
-import datatypes.UserDetails;
+import datatypes.UserDto;
 import entities.User;
 import entities.UserGroup;
 import jakarta.ejb.EJBException;
@@ -11,10 +10,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
-import java.lang.reflect.Type;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -28,7 +25,7 @@ public class UserBean {
 
     private Logger logger = Logger.getLogger(UserBean.class.getName());
 
-    public UserDetails getUser(String username,String password){
+    public UserDto getUser(String username, String password){
         try{
             logger.info("password");
             String queryString = "SELECT u FROM User u WHERE u.userName = :username AND u.password = :pass";
@@ -37,7 +34,7 @@ public class UserBean {
             query.setParameter("pass",password);
             User res = query.getSingleResult();
 
-            return new UserDetails(res.getUserID(),res.getUserName(),res.getFirstName(),res.getLastName(),res.getEmail(),res.getAddress());
+            return new UserDto(res.getUserID(),res.getUserName(),res.getFirstName(),res.getLastName(),res.getEmail(),res.getAddress());
 
         }
         catch (Exception ex){
@@ -62,5 +59,72 @@ public class UserBean {
 
         entityManager.persist(userGroup);
 
+    }
+    public User findUserByUsername(String username){
+        User user = (User) entityManager
+                .createQuery("SELECT u from User u where u.userName = :username")
+                .setParameter("username",username)
+                .getSingleResult();
+        return user;
+    }
+    public List<UserDto> findAllUsers(){
+        try {
+            TypedQuery<User> typedQuerry = entityManager.createQuery("SELECT u FROM User u", User.class);
+            List<User> users = typedQuerry.getResultList();
+            return copyUsersToDto(users);
+        }
+        catch (Exception ex){
+            throw new EJBException(ex);
+        }
+    }
+
+    private List<UserDto> copyUsersToDto(List<User>users){
+        List<UserDto> list = new ArrayList<>();
+        for(User user : users){
+            UserDto temp = new UserDto(user.getUserID(),user.getUserName(),user.getFirstName(),user.getLastName(),user.getEmail(),user.getAddress());
+            list.add(temp);
+        }
+        return list;
+
+    }
+    public UserDto getUserById(Long id){
+        try {
+            TypedQuery<User> typedQuerry = entityManager.createQuery("SELECT u FROM User u WHERE u.userID=:id", User.class).setParameter("id",id);
+            User user = typedQuerry.getSingleResult();
+            return new UserDto(user.getUserID(),user.getUserName(),user.getFirstName(),user.getLastName(),user.getEmail(),user.getAddress());
+        }
+        catch (Exception ex){
+            throw new EJBException(ex);
+        }
+    }
+    private void assignGroupsToUser(String username, Collection<String> groups){
+        for(String group:groups) {
+            UserGroup userGroup=new UserGroup();
+            userGroup.setUsername(username);
+            userGroup.setRole(group);
+            entityManager.persist(userGroup);
+        }
+    }
+   private List<UserGroup> getRolesForUser(String userName){
+        try {
+            TypedQuery<UserGroup> typedQuerry = entityManager.createQuery("SELECT g FROM UserGroup g WHERE g.username=:username", UserGroup.class).setParameter("username",userName);
+            List<UserGroup> users = typedQuerry.getResultList();
+            return users;
+        }
+        catch (Exception ex){
+            throw new EJBException(ex);
+        }
+    }
+    public String formatRoles(String userName){
+        List<UserGroup> userGroups = getRolesForUser(userName);
+        if (userGroups == null || userGroups.isEmpty()) {
+            return "";
+        }
+        StringBuilder result = new StringBuilder(userGroups.get(0).getRole());
+        for (int i = 1; i < userGroups.size(); i++) {
+            result.append(',').append(userGroups.get(i).getRole());
+        }
+
+        return result.toString();
     }
 }
