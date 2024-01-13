@@ -68,7 +68,7 @@
                             ${borrow.borrowDate}
                     </div>
                     <div class="col">
-                        <form action="#" method="get">
+                        <form action="ReturnBook" method="post">
                             <input type="hidden" name="borrow_id" value="${borrow.borrowId}">
                             <button type="submit" class="btn btn-secondary">Return</button>
                         </form>
