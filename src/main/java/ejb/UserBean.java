@@ -60,7 +60,7 @@ public class UserBean {
         entityManager.persist(userGroup);
 
     }
-    public User findUserByUsername(String username){
+    private User findUserByUsername(String username){
         User user = (User) entityManager
                 .createQuery("SELECT u from User u where u.userName = :username")
                 .setParameter("username",username)
@@ -107,6 +107,8 @@ public class UserBean {
         }
     }
     private void assignGroupsToUser(String username, Collection<String> groups){
+        deleteRolesForUser(username);
+        
         for(String group:groups) {
             UserGroup userGroup=new UserGroup();
             userGroup.setUsername(username);
@@ -123,6 +125,11 @@ public class UserBean {
         catch (Exception ex){
             throw new EJBException(ex);
         }
+    }
+    public void deleteRolesForUser(String userName){
+        List<UserGroup> roles = getRolesForUser(userName);
+        for(UserGroup userGroup : roles)
+            entityManager.remove(userGroup);
     }
     public String formatRoles(String userName){
         List<UserGroup> userGroups = getRolesForUser(userName);

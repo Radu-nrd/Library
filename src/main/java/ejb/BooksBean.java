@@ -31,6 +31,19 @@ public class BooksBean {
             throw new EJBException(ex);
         }
     }
+    public List<BookDto> getBooksDtoAfterSearchKey(String search){
+        try {
+            TypedQuery<Book> typedQuery = entityManager
+                    .createQuery("SELECT b FROM Book b where b.author LIKE :search OR b.title LIKE :search OR b.genre LIKE :search OR b.description LIKE :search",Book.class)
+                    .setParameter("search",search);
+            List<Book> books = typedQuery.getResultList();
+            return copyBooksToDto(books);
+        }
+        catch (Exception ex){
+            throw new EJBException(ex);
+        }
+    }
+
 
     private List<BookDto> copyBooksToDto(List<Book> books){
         List<BookDto> list = new ArrayList<>();
