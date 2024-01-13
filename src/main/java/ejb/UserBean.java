@@ -106,12 +106,13 @@ public class UserBean {
             throw new EJBException(ex);
         }
     }
-    private void assignGroupsToUser(String username, Collection<String> groups){
-        deleteRolesForUser(username);
+    public void assignGroupsToUser(Long userId, Collection<String> groups){
+        User user = entityManager.find(User.class, userId);
+        deleteRolesForUser(user.getUserName());
         
         for(String group:groups) {
             UserGroup userGroup=new UserGroup();
-            userGroup.setUsername(username);
+            userGroup.setUsername(user.getUserName());
             userGroup.setRole(group);
             entityManager.persist(userGroup);
         }

@@ -17,6 +17,10 @@
         </select>
       </div>
       <br>
+      <form method="post" action="ChangeRoles">
+        <input type="hidden" value="${user.userId}" name="user_id">
+        <button type="submit" class="btn btn-outline-primary">Save</button>
+      </form>
     </div>
   </div>
 </t:pageTemplate>
