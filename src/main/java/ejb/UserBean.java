@@ -92,8 +92,13 @@ public class UserBean {
 
     }
     public void deleteUser(Long userId){
-        User user = entityManager.find(User.class,userId);
-        entityManager.remove(user);
+       try {
+           User user = entityManager.find(User.class,userId);
+           entityManager.remove(user);
+       }
+       catch (Exception ex){
+           throw new EJBException(ex);
+       }
     }
 
     public UserDto getUserById(Long id){
@@ -107,14 +112,19 @@ public class UserBean {
         }
     }
     public void assignGroupsToUser(Long userId, Collection<String> groups){
-        User user = entityManager.find(User.class, userId);
-        deleteRolesForUser(user.getUserName());
-        
-        for(String group:groups) {
-            UserGroup userGroup=new UserGroup();
-            userGroup.setUsername(user.getUserName());
-            userGroup.setRole(group);
-            entityManager.persist(userGroup);
+        try {
+            User user = entityManager.find(User.class, userId);
+            deleteRolesForUser(user.getUserName());
+
+            for(String group:groups) {
+                UserGroup userGroup=new UserGroup();
+                userGroup.setUsername(user.getUserName());
+                userGroup.setRole(group);
+                entityManager.persist(userGroup);
+            }
+        }
+        catch (Exception ex){
+            throw new EJBException(ex);
         }
     }
    private List<UserGroup> getRolesForUser(String userName){

@@ -4,12 +4,12 @@
 
 <t:pageTemplate pageTitle="Home">
     <div class="homebody">
-        <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
-            <a class="search-button" href="${pageContext.request.contextPath}/Users">Users</a>
+        <c:if test="${pageContext.request.isUserInRole('READ_USERS')}">
+            <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/Users">Users</a>
         </c:if>
 
         <c:if test="${pageContext.request.isUserInRole('WRITE_BOOKS')}">
-            <a class="search-button" href="${pageContext.request.contextPath}/AddBook">Add Book</a>
+            <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/AddBook">Add Book</a>
         </c:if>
 
         <table>

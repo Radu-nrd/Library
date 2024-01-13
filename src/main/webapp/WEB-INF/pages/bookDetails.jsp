@@ -23,19 +23,25 @@
                 <p><strong>Description:</strong>${book.description}</p>
                 <p><strong>Genre:</strong>${book.genre}</p>
                <div class="btn-group">
-                   <form method="post" action="${pageContext.request.contextPath}/BorrowBook">
-                       <input type="hidden" value="${book.bookId}" name="book_id">
-                       <button type="submit" class="btn btn-outline-primary">Borrow</button>
-                   </form>
+                   <c:if test="${pageContext.request.isUserInRole('READ_BOOKS')}">
+                       <form method="post" action="${pageContext.request.contextPath}/BorrowBook">
+                           <input type="hidden" value="${book.bookId}" name="book_id">
+                           <button type="submit" class="btn btn-outline-primary mx-1">Borrow</button>
+                       </form>
+                   </c:if>
                    <br>
-                   <form method="post" action="DeleteBook">
-                       <input type="hidden" value="${book.bookId}" name="book_id">
-                       <button type="submit" class="btn btn-outline-primary">Delete</button>
-                   </form>
+                   <c:if test="${pageContext.request.isUserInRole('WRITE_BOOKS')}">
+                       <form method="post" action="DeleteBook">
+                           <input type="hidden" value="${book.bookId}" name="book_id">
+                           <button type="submit" class="btn btn-outline-primary mx-1">Delete</button>
+                       </form>
+                   </c:if>
                    <br>
-                   <div>
-                       <button type="submit" class="btn btn-outline-primary" onclick="redirectToPage('${pageContext.request.contextPath}/EditBook?id=${book.bookId}')">Edit Book</button>
-                   </div>
+                   <c:if test="${pageContext.request.isUserInRole('WRITE_BOOKS')}">
+                       <div>
+                           <button type="submit" class="btn btn-outline-primary mx-1" onclick="redirectToPage('${pageContext.request.contextPath}/EditBook?id=${book.bookId}')">Edit Book</button>
+                       </div>
+                   </c:if>
                </div>
             </div>
         </div>

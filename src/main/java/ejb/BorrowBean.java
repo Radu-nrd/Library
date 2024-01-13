@@ -39,9 +39,14 @@ public class BorrowBean {
     }
 
     public void returnBook(Long borrowId){
-        UserBook entry = entityManager.find(UserBook.class,borrowId);
-        entry.setStatus("returned");
-        entry.setReturnDate(LocalDate.now().toString());
+        try {
+            UserBook entry = entityManager.find(UserBook.class,borrowId);
+            entry.setStatus("returned");
+            entry.setReturnDate(LocalDate.now().toString());
+        }
+        catch (Exception ex){
+            throw new EJBException(ex);
+        }
     }
 
     public List<BookBorrowDto> findAllBooks(){

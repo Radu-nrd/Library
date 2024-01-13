@@ -3,6 +3,8 @@ package com.library.library;
 import ejb.BorrowBean;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.servlet.annotation.ServletSecurity;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"READ_BOOKS"}))
 @WebServlet(name = "ReturnBook", value = "/ReturnBook")
 public class ReturnBook extends HttpServlet {
     @Inject
@@ -25,7 +28,6 @@ public class ReturnBook extends HttpServlet {
         Long borrowId= Long.parseLong(request.getParameter("borrow_id"));
         borrowBean.returnBook(borrowId);
         response.sendRedirect(request.getContextPath()+"/Profile");
-
 
     }
 }

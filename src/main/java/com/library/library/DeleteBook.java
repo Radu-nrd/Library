@@ -3,6 +3,8 @@ package com.library.library;
 import ejb.BooksBean;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.servlet.annotation.ServletSecurity;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"WRITE_BOOKS"}))
 @WebServlet(name = "DeleteBook", value = "/DeleteBook")
 public class DeleteBook extends HttpServlet {
     @Inject

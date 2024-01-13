@@ -27,7 +27,6 @@ public class HomeController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<BookDto> books = booksBean.findAllBooks();
 
-        //request.setAttribute("nume",request.getUserPrincipal().getName());
         request.setAttribute("books",books);
         request.getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(request,response);
     }

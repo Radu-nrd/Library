@@ -4,10 +4,13 @@
 
 <t:pageTemplate pageTitle="Change Roles">
   <div class="container-fluid">
-    <div>
+    <form method="post" action="ChangeRoles">
       <h3>Change Roles</h3>
       <hr class="mb-4">
+      <input type="hidden" value="${user.userId}" name="user_id">
+
       <p><strong>Username:</strong>${user.userName}</p>
+      <p>Id: ${user.userId}</p>
       <div class="col-md-6">
         <label for="user_groups">Groups</label>
         <select class="custom-select d-block w-100" name="user_groups" id="user_groups"  multiple>
@@ -17,10 +20,8 @@
         </select>
       </div>
       <br>
-      <form method="post" action="ChangeRoles">
-        <input type="hidden" value="${user.userId}" name="user_id">
-        <button type="submit" class="btn btn-outline-primary">Save</button>
-      </form>
-    </div>
+
+      <button type="submit" class="btn btn-outline-primary">Save</button>
+    </form>
   </div>
 </t:pageTemplate>

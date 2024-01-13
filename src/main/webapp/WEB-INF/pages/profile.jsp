@@ -16,17 +16,14 @@
     .onMiddle{
         align-items: center;
     }
-    .divFlex{
-        display: flex;
-        justify-content: center;
-    }
+
 </style>
 
 <t:pageTemplate pageTitle="Profile">
     <div class="col-md-6 divCentre">
         <h2 class="center">User Profile</h2>
-        <hr>
-        <div class="divFlex onMiddle">
+        <br>
+        <div>
             <div>
                 <p> <strong>First Name: </strong>${user.firstName}</p>
                 <p> <strong>Last Name: </strong>${user.lastName}</p>
@@ -34,6 +31,7 @@
                 <p><strong>Address:</strong> ${user.address}</p>
             </div>
         </div>
+        <hr>
         <div>
             <h2>Borrowed Books</h2>
             <div class="row">
@@ -69,7 +67,7 @@
                     </div>
                     <div class="col">
                         <form action="ReturnBook" method="post">
-                            <input type="hidden" name="borrow_id" value="${borrow.borrowId}">
+                            <input type="hidden" name="borrow_id" value="${borrow.id}">
                             <button type="submit" class="btn btn-secondary">Return</button>
                         </form>
                     </div>

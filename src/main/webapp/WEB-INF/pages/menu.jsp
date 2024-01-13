@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 <header>
     <nav class="autohide navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid menumarginleft">
@@ -9,17 +11,14 @@
             <div class="collapse navbar-collapse serchbarmarginleft" id="navbarColor02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <form class="search-form" action="AddBook" method="post">
-                            <input type="text" class="search-bar" id="searchInput" placeholder="Enter your search term">
+                        <form class="search-form" action="SearchResult" method="get">
+                            <input type="text" class="search-bar" id="searchInput" placeholder="Enter your search term" name="searchInput">
                             <button type="submit" class="search-button">Search</button>
                         </form>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 rightmarginmenu">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Items</a>
-                        </li>
                         <!-- Dropdown -->
                         <li class="nav-item dropdown marginrightprofile">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"

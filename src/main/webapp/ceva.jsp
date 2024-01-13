@@ -11,3 +11,7 @@
         <button type="submit">Borrow</button>
     </form>
 </t:pageTemplate>
+
+<c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
+
+</c:if>
