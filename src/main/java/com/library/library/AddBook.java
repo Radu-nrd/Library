@@ -46,9 +46,7 @@ public class AddBook extends HttpServlet {
         filePart.getInputStream().read(fileContent);
 
         booksBean.createBook(author,title,description,genre);
-
         Long bookId = booksBean.getBookId(author,title,description,genre);
-
         booksBean.addPhotoToBook(bookId,fileName,fileType,fileContent);
 
         response.sendRedirect(request.getContextPath()+"/Home");

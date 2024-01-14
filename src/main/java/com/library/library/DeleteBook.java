@@ -9,10 +9,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"WRITE_BOOKS"}))
 @WebServlet(name = "DeleteBook", value = "/DeleteBook")
 public class DeleteBook extends HttpServlet {
     @Inject
@@ -24,8 +22,14 @@ public class DeleteBook extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long bookId= Long.parseLong(request.getParameter("book_id"));
-        booksBean.deleteBookById(bookId);
+
+        Long bookID= Long.parseLong(request.getParameter("bookid"));
+        try{
+            booksBean.deleteBookById(bookID);
+        }
+        catch (Exception ex){
+
+        }
         response.sendRedirect(request.getContextPath()+"/Home");
 
     }

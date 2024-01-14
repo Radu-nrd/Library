@@ -94,6 +94,7 @@ public class UserBean {
     public void deleteUser(Long userId){
        try {
            User user = entityManager.find(User.class,userId);
+           deleteRolesForUser(user.getUserName());
            entityManager.remove(user);
        }
        catch (Exception ex){

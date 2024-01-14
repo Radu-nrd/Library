@@ -1,6 +1,5 @@
 package entities;
 
-import interfaces.IBook;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -21,7 +20,6 @@ public class Book {
 
     }
 
-
     public Book(Long bookID, String author, String title, String description, String genre) {
         this.bookID = bookID;
         this.author = author;
@@ -30,7 +28,7 @@ public class Book {
         this.genre = genre;
     }
 
-    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     public BookPhoto getPhoto() {
         return photo;
     }
@@ -77,12 +75,5 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @OneToMany(mappedBy = "book")
-    private Collection<UserBook> userBooks;
-
-    public void addUserBook(UserBook userBook){
-        userBooks.add(userBook);
     }
 }

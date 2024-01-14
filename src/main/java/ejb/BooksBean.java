@@ -6,9 +6,12 @@ import entities.Book;
 import entities.BookPhoto;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -76,15 +79,26 @@ public class BooksBean {
     }
 
     public BookDto findById(Long bookId){
-
         Book book = entityManager.find(Book.class, bookId);
         return new BookDto(book.getBookID(),book.getAuthor(), book.getTitle(),book.getDescription(),book.getGenre());
     }
 
-    public void deleteBookById(Long bookId){
-        Book book = entityManager.find(Book.class,bookId);
-        entityManager.remove(book);
 
+    public void deleteBookById(Long bookId){
+      try {
+          Book book = entityManager.find(Book.class,bookId);
+          if (book != null) {
+              BookPhoto photo = book.getPhoto();
+              if (photo != null) {
+                  book.setPhoto(null);
+                  entityManager.remove(photo);
+              }
+              entityManager.remove(book);
+          }
+      }
+      catch (Exception ex){
+          throw new EJBException(ex);
+      }
     }
 
     public void addPhotoToBook(Long bookId,String filename,String fileType,byte[] fileContent){

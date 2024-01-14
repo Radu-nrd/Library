@@ -33,8 +33,6 @@ public class BorrowBean {
         userBook.setBook(book);
         userBook.setBorrowedDate(LocalDate.now().toString());
         userBook.setStatus("borrowed");
-        user.addUserBook(userBook);
-        book.addUserBook(userBook);
         entityManager.persist(userBook);
     }
 

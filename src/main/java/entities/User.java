@@ -73,11 +73,4 @@ public class User {
         this.email = email;
     }
 
-    @OneToMany(mappedBy = "user")
-    private Collection<UserBook> userBooks;
-
-    public void addUserBook(UserBook userBook){
-        userBooks.add(userBook);
-    }
-
 }
